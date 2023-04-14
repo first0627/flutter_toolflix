@@ -11,7 +11,7 @@ class Button extends StatelessWidget {
       required this.bgColor,
       required this.textColor});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
