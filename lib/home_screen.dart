@@ -93,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Expanded(
+                  //자식 공간 최대한 확장하여 차지 할 수 있도록 해주는 위젯
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
