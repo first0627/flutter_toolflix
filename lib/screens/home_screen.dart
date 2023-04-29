@@ -5,7 +5,7 @@ import 'package:toonflix/services/api_service.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
+  final Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,25 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: FutureBuilder(
+        //await, satstate 할필요 없다. 데이터 주고 받기에 정말 좋은 위젯
         future: webtoons,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const Text("There is data!");
+            return ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                var webtoon = snapshot.data![index];
+                return Text(webtoon.title);
+                //listview builder는 사용자가 보고 있는 섹션만 보여줌
+              },
+              separatorBuilder: (context, index) => const SizedBox(width: 20),
+              //data뒤에 !는 null safetyㅎㅎ
+            );
           }
-          return const Text('Loading...');
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
