@@ -17,6 +17,7 @@ class Webtoon extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
+            //모든 애니메이션을 생성하는 녀석
             builder: (context) => DetailScreen(
               title: title,
               thumb: thumb,
@@ -29,25 +30,28 @@ class Webtoon extends StatelessWidget {
       },
       child: Column(
         children: [
-          Container(
-            width: 250,
-            clipBehavior: Clip.hardEdge, //자식의 부모 영역 침범을 제어하는 방법
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 15,
-                  offset: const Offset(10, 10), //태양의 위치를 바꾼다고 생각하면된다.
-                  color: Colors.black.withOpacity(0.5),
-                ),
-              ],
-            ),
-            child: Image.network(
-              thumb,
-              headers: const {
-                "User-Agent":
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36", //강의에서 오류떠서 아래 해결책 참고해서 넣은 코드
-              },
+          Hero(
+            tag: id, //포스터와 제목부분중 포터터 쪽만 Hero가 감싸고 있음
+            child: Container(
+              width: 250,
+              clipBehavior: Clip.hardEdge, //자식의 부모 영역 침범을 제어하는 방법
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 15,
+                    offset: const Offset(10, 10), //태양의 위치를 바꾼다고 생각하면된다.
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ],
+              ),
+              child: Image.network(
+                thumb,
+                headers: const {
+                  "User-Agent":
+                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36", //강의에서 오류떠서 아래 해결책 참고해서 넣은 코드
+                },
+              ),
             ),
           ),
           const SizedBox(
