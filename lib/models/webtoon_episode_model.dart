@@ -4,6 +4,6 @@ class WebtoonEpisodeModel {
   WebtoonEpisodeModel.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         title = json["title"],
-        raitng = json["raitng"],
+        raitng = json["rating"],
         date = json["date"];
 }
